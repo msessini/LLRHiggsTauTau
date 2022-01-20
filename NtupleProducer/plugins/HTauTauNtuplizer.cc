@@ -1157,6 +1157,9 @@ private:
   std::vector<Bool_t> trg_mutaucross;
   std::vector<Bool_t> trg_doubletau;
 
+  std::vector<Float_t> vx_1;
+  std::vector<Float_t> vy_1;
+  std::vector<Float_t> vz_1;
   std::vector<Float_t> pt_1;
   std::vector<Float_t> phi_1;
   std::vector<Float_t> eta_1;
@@ -1193,6 +1196,9 @@ private:
   std::vector<Float_t> antieweight_1;
   std::vector<Float_t> antimuweight_1;
 
+  std::vector<Float_t> vx_2;
+  std::vector<Float_t> vy_2;
+  std::vector<Float_t> vz_2;
   std::vector<Float_t> pt_2;
   std::vector<Float_t> phi_2;
   std::vector<Float_t> eta_2;
@@ -1450,18 +1456,18 @@ private:
 
   PileUp * PUofficial = new PileUp();
 
-  TFile *TES2016= new TFile("/opt/sbg/cms/safe1/cms/msessini/Produi5/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauES_dm_DeepTau2017v2p1VSjet_2016Legacy.root","read");
-  TFile *FES2016= new TFile("/opt/sbg/cms/safe1/cms/msessini/Produi5/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2016Legacy.root");
+  TFile *TES2016= new TFile(/*"/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer*/"data/TauES_dm_DeepTau2017v2p1VSjet_2016Legacy.root","read");
+  TFile *FES2016= new TFile("data/TauFES_eta-dm_DeepTau2017v2p1VSe_2016Legacy.root");
   TH1* histTES2016 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2016))->Get("tes"));
   TGraph* histFES2016 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2016))->Get("fes"));
 
-  TFile *TES2017=new TFile("/opt/sbg/cms/safe1/cms/msessini/Produi5/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauES_dm_DeepTau2017v2p1VSjet_2017ReReco.root","read");
-  TFile *FES2017=new TFile("/opt/sbg/cms/safe1/cms/msessini/Produi5/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2017ReReco.root");
+  TFile *TES2017=new TFile("data/TauES_dm_DeepTau2017v2p1VSjet_2017ReReco.root","read");
+  TFile *FES2017=new TFile("/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2017ReReco.root");
   TH1* histTES2017 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2017))->Get("tes"));
   TGraph* histFES2017 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2017))->Get("fes"));
 
-  TFile *TES2018=new TFile("/opt/sbg/cms/safe1/cms/msessini/Produi5/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauES_dm_DeepTau2017v2p1VSjet_2018ReReco.root","read");
-  TFile *FES2018=new TFile("/opt/sbg/cms/safe1/cms/msessini/Produi5/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2018ReReco.root");
+  TFile *TES2018=new TFile("data/TauES_dm_DeepTau2017v2p1VSjet_2018ReReco.root","read");
+  TFile *FES2018=new TFile("data/TauFES_eta-dm_DeepTau2017v2p1VSe_2018ReReco.root");
   TH1* histTES2018 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2018))->Get("tes"));
   TGraph* histFES2018 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2018))->Get("fes"));
 
@@ -2210,6 +2216,9 @@ void HTauTauNtuplizer::Initialize(){
   trg_mutaucross.clear();
   trg_doubletau.clear();
 
+  vx_1.clear();
+  vy_1.clear();
+  vz_1.clear();
   pt_1.clear();
   phi_1.clear();
   eta_1.clear();
@@ -2235,6 +2244,9 @@ void HTauTauNtuplizer::Initialize(){
   antieweight_1.clear();
   antimuweight_1.clear();
 
+  vx_2.clear();
+  vy_2.clear();
+  vz_2.clear();
   pt_2.clear();
   phi_2.clear();
   eta_2.clear();
@@ -3320,6 +3332,9 @@ void HTauTauNtuplizer::beginJob(){
   myTree->Branch("trg_mutaucross", &trg_mutaucross);
   myTree->Branch("trg_doubletau", &trg_doubletau);
 
+  myTree->Branch("vx_1", &vx_1);
+  myTree->Branch("vy_1", &vy_1);
+  myTree->Branch("vz_1", &vz_1);
   myTree->Branch("pt_1", &pt_1);
   myTree->Branch("phi_1", &phi_1);
   myTree->Branch("eta_1", &eta_1);
@@ -3344,6 +3359,9 @@ void HTauTauNtuplizer::beginJob(){
   myTree->Branch("antieweight_1", &antieweight_1);
   myTree->Branch("antimuweight_1", &antimuweight_1);
 
+  myTree->Branch("vx_2", &vx_2);
+  myTree->Branch("vy_2", &vy_2);
+  myTree->Branch("vz_2", &vz_2);
   myTree->Branch("pt_2", &pt_2);
   myTree->Branch("phi_2", &phi_2);
   myTree->Branch("eta_2", &eta_2);
@@ -4156,7 +4174,6 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
     }
 
   //Selection
-cout<<"selection"<<endl;
   int NpairsSynch=0;
   bool _eleveto=false, _muonveto=false;
   Float_t idisoweight=1;
@@ -4179,7 +4196,6 @@ cout<<"selection"<<endl;
   math::XYZTLorentzVector Tau1P4Corrected,Tau2P4Corrected;
 
   for(edm::View<pat::CompositeCandidate>::const_iterator candi = cands->begin(); candi!=cands->end();++candi) {
-cout<<"///cand///"<<endl;
     const pat::CompositeCandidate& candSynch = (*candi);
 
     float decayModeSynch0=-1.;
@@ -4209,61 +4225,42 @@ cout<<"///cand///"<<endl;
       byVLooseDeepTau2017v2p1VSmuSynch1 = userdatahelpers::getUserInt (candSynch.daughter(1), "byVLooseDeepTau2017v2p1VSmu");
     }
     else Tau2P4Corrected=candSynch.daughter(1)->p4();
-cout<<"begin"<<endl;
     //TauTau
     if(candSynch.daughter(0)->isMuon() || candSynch.daughter(0)->isElectron()) continue;
     if(candSynch.daughter(1)->isMuon() || candSynch.daughter(1)->isElectron()) continue;
-cout<<"tautau"<<endl;
-    //di-lepton
-    bool DiLepton = false;
-    for(unsigned int i = 0; i<candSynch.numberOfDaughters(); i++){
-      for(unsigned int j = 0; j<candSynch.numberOfDaughters(); i++){
-        if(i == j) continue;
-        if(userdatahelpers::getUserInt(candSynch.daughter(i),"byLooseDeepTau2017v2p1VSe") && userdatahelpers::getUserInt(candSynch.daughter(j),"byLooseDeepTau2017v2p1VSe") && DiEle(candSynch.daughter(i),candSynch.daughter(j),candSynch.daughter(i)->pt(),candSynch.daughter(j)->pt())) DiLepton = true;
-        if(userdatahelpers::getUserInt(candSynch.daughter(i),"byLooseDeepTau2017v2p1VSmu") && userdatahelpers::getUserInt(candSynch.daughter(j),"byLooseDeepTau2017v2p1VSmu") && DiMuon(candSynch.daughter(i),candSynch.daughter(j),candSynch.daughter(i)->pt(),candSynch.daughter(j)->pt())) DiLepton = true;
-      }
-    }
-    if(DiLepton == true) continue;
-cout<<"dilepton"<<endl;
-    //additional lepton
-    bool ThirdLepton = false;
+    //di-lepton && third lepton
+    bool DiLepton = false, ThirdLepton = false;
     if(candSynch.numberOfDaughters()>2){
       for(unsigned int i = 2; i<candSynch.numberOfDaughters(); i++){
-	if(deltaR(candSynch.daughter(i)->p4(),Tau1P4Corrected)>0.5 && deltaR(candSynch.daughter(i)->p4(),Tau2P4Corrected)>0.5){
-          if(EleVeto(candSynch.daughter(i),candSynch.daughter(i)->pt()) && userdatahelpers::getUserInt(candSynch.daughter(i),"byVLooseDeepTau2017v2p1VSe")>0.5) ThirdLepton = true; 
-	  if(MuVeto(candSynch.daughter(i),candSynch.daughter(i)->pt()) && userdatahelpers::getUserInt(candSynch.daughter(i),"byVLooseDeepTau2017v2p1VSmu")>0.5) ThirdLepton = true;
+        if(deltaR(candSynch.daughter(i)->p4(),Tau1P4Corrected)>0.5 && deltaR(candSynch.daughter(i)->p4(),Tau2P4Corrected)>0.5){
+          if(EleVeto(candSynch.daughter(i),candSynch.daughter(i)->pt()) || MuVeto(candSynch.daughter(i),candSynch.daughter(i)->pt())) ThirdLepton = true;  
+        }
+        for(unsigned int j = 2; j<candSynch.numberOfDaughters(); i++){
+          if(i == j) continue;
+          if(DiEle(candSynch.daughter(i),candSynch.daughter(j),candSynch.daughter(i)->pt(),candSynch.daughter(j)->pt()) || DiMuon(candSynch.daughter(i),candSynch.daughter(j),candSynch.daughter(i)->pt(),candSynch.daughter(j)->pt())) DiLepton = true;
         }
       }
     }
-    if(ThirdLepton == true) continue;
-cout<<"thirdlepton"<<endl;
+    if(DiLepton == true || ThirdLepton == true) continue;
     //pT
     if(Tau1P4Corrected.Pt()<35 || Tau2P4Corrected.Pt()<35) continue;
-cout<<"pt"<<endl;
     //eta
     if(std::abs(candSynch.daughter(0)->eta())>2.1 || std::abs(candSynch.daughter(1)->eta())>2.1) continue;
-cout<<"eta"<<endl;
     //dz
     if(std::abs(userdatahelpers::getUserFloat(candSynch.daughter(0),"dz")) > 0.2 || std::abs(userdatahelpers::getUserFloat(candSynch.daughter(1),"dz")) > 0.2) continue;
-cout<<"dz"<<endl;
     //decay mode
     if(decayModeFindingNewDMsSynch0<0.5 || decayModeSynch0 == 5 || decayModeSynch0 == 6) continue;
     if(decayModeFindingNewDMsSynch1<0.5 || decayModeSynch1 == 5 || decayModeSynch1 == 6) continue;
-cout<<"DM"<<endl;
     //ID
     if(byMediumDeepTau2017v2p1VSjetSynch0<0.5 || byVVLooseDeepTau2017v2p1VSeSynch0<0.5 || byVLooseDeepTau2017v2p1VSmuSynch0<0.5) continue;
     if(byMediumDeepTau2017v2p1VSjetSynch1<0.5 || byVVLooseDeepTau2017v2p1VSeSynch1<0.5 || byVLooseDeepTau2017v2p1VSmuSynch1<0.5) continue;
-cout<<"ID"<<endl;
     //charge
     if(std::abs(candSynch.daughter(0)->charge())!=1 || std::abs(candSynch.daughter(1)->charge())!=1) continue;
     if(candSynch.daughter(1)->charge()*candSynch.daughter(0)->charge()>0) continue;
-cout<<"charge"<<endl;
     //delta R
     if(deltaR(Tau1P4Corrected,Tau2P4Corrected)<0.5) continue;
-cout<<"charge"<<endl;
     //visible mass
     if((Tau1P4Corrected + Tau2P4Corrected).M()<40) continue;
-cout<<"visible mass"<<endl;
 
     int tau1Index=-99,tau2Index=-99;
     double dRmin1=0.00001;
@@ -4404,8 +4401,12 @@ cout<<"visible mass"<<endl;
     NpairsSynch++;
   }
 
-  SelectedPairs=NpairsSynch;
-  std::sort(candVectorSynch.begin(),candVectorSynch.end(),ComparePairsbyIso);
+  if(NpairsSynch!=0){
+    SelectedPairs=NpairsSynch;
+    std::sort(candVectorSynch.begin(),candVectorSynch.end(),ComparePairsbyIso);
+  }
+  else return;
+
   for (int ipair=0;ipair<1;ipair++){
 
     pat::CompositeCandidate cand0Synch=candVectorSynch.at(ipair);
@@ -4576,9 +4577,10 @@ cout<<"visible mass"<<endl;
       }
     tau1IndexVect.push_back(tau1Index);
     tau2IndexVect.push_back(tau2Index);
-    eleveto=_eleveto;
-    muonveto=_muonveto;
 
+    vx_1.push_back(cand0Synch.daughter(0)->vx());
+    vy_1.push_back(cand0Synch.daughter(0)->vy());
+    vz_1.push_back(cand0Synch.daughter(0)->vz());
     pt_1.push_back(Tau1P4Corrected.pt());
     phi_1.push_back(cand0Synch.daughter(0)->phi());
     eta_1.push_back(cand0Synch.daughter(0)->eta());
@@ -4622,7 +4624,9 @@ cout<<"visible mass"<<endl;
 	}
     }
 
-
+    vx_2.push_back(cand0Synch.daughter(1)->vx());
+    vy_2.push_back(cand0Synch.daughter(1)->vy());
+    vz_2.push_back(cand0Synch.daughter(1)->vz());
     pt_2.push_back(Tau2P4Corrected.pt());
     phi_2.push_back(cand0Synch.daughter(1)->phi());
     eta_2.push_back(cand0Synch.daughter(1)->eta());
@@ -4852,7 +4856,6 @@ cout<<"visible mass"<<endl;
 
   }
   if(NpairsSynch==0) return; //GB Cuts on all tree variables
-cout<<"FILL : "<<NpairsSynch<<" pair"<<endl;
   myTree->Fill();
   //return;
 }

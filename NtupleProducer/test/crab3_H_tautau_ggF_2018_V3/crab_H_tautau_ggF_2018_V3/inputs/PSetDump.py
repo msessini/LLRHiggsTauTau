@@ -3,7 +3,7 @@ import FWCore.ParameterSet.Config as cms
 process = cms.Process("TEST")
 
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('root://cms-xrd-global.cern.ch//store/mc/RunIIAutumn18MiniAOD/VBFHToTauTauUncorrelatedDecay_Filtered_M125_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/102X_upgrade2018_realistic_v15-v1/240000/F55690CF-BE27-D845-ADD0-4C794EDB202D.root')
+    fileNames = cms.untracked.vstring('root://cms-xrd-global.cern.ch//store/mc/RunIIAutumn18MiniAOD/GluGluHToTauTauUncorrelatedDecay_Filtered_M125_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/102X_upgrade2018_realistic_v15-v1/20000/282FD982-AD26-0943-866F-E21FF5743ECF.root')
 )
 process.AnomalousCellParameters = cms.PSet(
     maxBadEcalCells = cms.uint32(9999999),

@@ -33,7 +33,6 @@ triggerhelper::triggerhelper(vector<string> HLTPaths) //: nTriggers(HLTPaths.siz
     "Flag_EcalDeadCellTriggerPrimitiveFilter",
     "Flag_globalSuperTightHalo2016Filter",
     "Flag_BadPFMuonFilter",
-    //"Flag_BadChargedCandidateFilter",
     "Flag_eeBadScFilter"
   };
   for(int i=0;i<nMETs;i++)metlist[i]=tmpMETfilters[i];
@@ -55,7 +54,6 @@ triggerhelper::triggerhelper(TH1F* hCounter){
     "Flag_EcalDeadCellTriggerPrimitiveFilter",
     "Flag_globalSuperTightHalo2016Filter",
     "Flag_BadPFMuonFilter",
-    //"Flag_BadChargedCandidateFilter",
     "Flag_eeBadScFilter"
   };
   for(int i=0;i<nMETs;i++)metlist[i]=tmpMETfilters[i];
@@ -72,7 +70,6 @@ triggerhelper::triggerhelper()//:nTriggers(0)
     "Flag_EcalDeadCellTriggerPrimitiveFilter",
     "Flag_globalSuperTightHalo2016Filter",
     "Flag_BadPFMuonFilter",
-    //"Flag_BadChargedCandidateFilter",
     "Flag_eeBadScFilter"
   };
   for(int i=0;i<nMETs;i++)metlist[i]=tmpMETfilters[i];
@@ -187,10 +184,10 @@ int triggerhelper::FindMETBit(const edm::Event& event, edm::EDGetTokenT<edm::Tri
   //event.getByToken(metFilterBitsToken_, metFilterBits);
   const edm::TriggerNames &metNames = event.triggerNames(*metFilterBits);
   for(int im=0;im<nMETs;im++){
-    // cout << "DEB looking for " << metlist[im] << endl;
+    //cout << "DEB looking for " << metlist[im] << endl;
     bool foundFilter = false;
     for(unsigned int i = 0; i < metFilterBits->size(); ++i){      
-      // cout << " --> and testing " << metNames.triggerName(i) << endl;
+      //cout << " --> and testing " << metNames.triggerName(i) << endl;
       if(metlist[im].compare(metNames.triggerName(i))==0){
         foundFilter = true;
         if ( metFilterBits->accept(i) ) bit |= 1 <<im;
