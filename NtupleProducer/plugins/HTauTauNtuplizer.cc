@@ -7,8 +7,6 @@
  *  \author G. Ortona (LLR) and L. Cadamuro (LLR)
  */
 
-//SES LE JOKERE
-
 #define EPSIL 1.e-5
 
 // system include files
