@@ -8,7 +8,7 @@ PyFilePath = os.environ['CMSSW_BASE']+"/src/LLRHiggsTauTau/NtupleProducer/"
 
 # Year/Period
 YEAR   = 2018
-PERIOD = 'A' # use 'D' for 2018D (prompt GT instead of ReReco GT), can be left empty if running on 2018ABC
+PERIOD = ' ' # use 'D' for 2018D (prompt GT instead of ReReco GT), can be left empty if running on 2018ABC
 
 #samples list (it could be moved to a cfg file for better reading
 #samples = [

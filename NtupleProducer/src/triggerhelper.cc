@@ -194,7 +194,7 @@ int triggerhelper::FindMETBit(const edm::Event& event, edm::EDGetTokenT<edm::Tri
         break;
       }
     }
-    if ( !foundFilter ) {
+    if (!foundFilter) {
       cout << "** triggerHelper :: Failed to find MET filter " << metlist[im] << endl;
     }
   }

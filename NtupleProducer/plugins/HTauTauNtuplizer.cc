@@ -129,7 +129,9 @@
 #include "TrackingTools/GeomPropagators/interface/AnalyticalImpactPointExtrapolator.h"
 
 #include "TLorentzVector.h"
-#include "TMatrixDSym.h"
+#include "TMatrixTSym.h"
+
+
 #include "TVectorD.h"
 #include "TVector3.h"
 #include "boost/functional/hash.hpp"
@@ -201,10 +203,10 @@ private:
 
   void fillMCTruth(const edm::Event& iEvent, const edm::EventSetup& iSetup);
 
-  bool EleVeto(const reco::Candidate* cand,double TauPt);
-  bool MuVeto(const reco::Candidate* cand,double TauPt);
-  bool DiEle(const reco::Candidate* cand1,const reco::Candidate* cand2,double TauPt1, double TauPt2);
-  bool DiMuon(const reco::Candidate* cand1,const reco::Candidate* cand2,double TauPt1, double TauPt2);
+  bool EleVeto(const reco::Candidate* cand);
+  bool MuVeto(const reco::Candidate* cand);
+  bool DiEle(const reco::Candidate* cand1,const reco::Candidate* cand2);
+  bool DiMuon(const reco::Candidate* cand1,const reco::Candidate* cand2);
   TLorentzVector getVisMomentumNoLep(const reco::Candidate* genL/*,std::vector<std::vector<std::vector<double> > > MCTauandProd_p4,std::vector<std::vector<int> > MCTauandProd_pdgid*/);
   int GenMatch(const reco::Candidate* genL, const edm::Event& event);
   math::XYZTLorentzVector P4Corrected(math::XYZTLorentzVector p4, int genmatch, int DM);
@@ -346,6 +348,7 @@ private:
   Float_t _pvRefit_x=0, _pvRefit_y=0, _pvRefit_z=0;
 
   std::vector<Float_t> _RefitPVBS_x,  _RefitPVBS_y, _RefitPVBS_z;
+  std::vector<vector<vector<double>>> _RefitPVBS_Cov;
   std::vector<Float_t> _RefitPVBS_xError,  _RefitPVBS_yError, _RefitPVBS_zError;
   std::vector<Float_t> _RefitPVNoBS_x,  _RefitPVNoBS_y, _RefitPVNoBS_z;
   std::vector<Float_t> _RefitPVNoBS_xError,  _RefitPVNoBS_yError, _RefitPVNoBS_zError;
@@ -411,6 +414,10 @@ private:
   std::vector<Float_t> _daughters_neutral_py;
   std::vector<Float_t> _daughters_neutral_pz;
   std::vector<Float_t> _daughters_neutral_e;
+  
+  std::vector<Float_t> _daughters_vx;
+  std::vector<Float_t> _daughters_vy;
+  std::vector<Float_t> _daughters_vz;
 
   std::vector<Int_t> _daughters_hasTES;
   std::vector<Float_t> _daughters_px_TauUp;
@@ -723,6 +730,10 @@ private:
   std::vector<Float_t> _daughters_pcaRefitPV_x;
   std::vector<Float_t> _daughters_pcaRefitPV_y;
   std::vector<Float_t> _daughters_pcaRefitPV_z;
+
+  std::vector<Float_t> _daughters_pcaRefitPVBS_x;
+  std::vector<Float_t> _daughters_pcaRefitPVBS_y;
+  std::vector<Float_t> _daughters_pcaRefitPVBS_z;
 
   std::vector<Float_t> _daughters_pcaGenPV_x;
   std::vector<Float_t> _daughters_pcaGenPV_y;
@@ -1157,9 +1168,6 @@ private:
   std::vector<Bool_t> trg_mutaucross;
   std::vector<Bool_t> trg_doubletau;
 
-  std::vector<Float_t> vx_1;
-  std::vector<Float_t> vy_1;
-  std::vector<Float_t> vz_1;
   std::vector<Float_t> pt_1;
   std::vector<Float_t> phi_1;
   std::vector<Float_t> eta_1;
@@ -1196,9 +1204,6 @@ private:
   std::vector<Float_t> antieweight_1;
   std::vector<Float_t> antimuweight_1;
 
-  std::vector<Float_t> vx_2;
-  std::vector<Float_t> vy_2;
-  std::vector<Float_t> vz_2;
   std::vector<Float_t> pt_2;
   std::vector<Float_t> phi_2;
   std::vector<Float_t> eta_2;
@@ -1462,7 +1467,7 @@ private:
   TGraph* histFES2016 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2016))->Get("fes"));
 
   TFile *TES2017=new TFile("data/TauES_dm_DeepTau2017v2p1VSjet_2017ReReco.root","read");
-  TFile *FES2017=new TFile("/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2017ReReco.root");
+  TFile *FES2017=new TFile("data/TauFES_eta-dm_DeepTau2017v2p1VSe_2017ReReco.root");
   TH1* histTES2017 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2017))->Get("tes"));
   TGraph* histFES2017 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2017))->Get("fes"));
 
@@ -1608,6 +1613,9 @@ void HTauTauNtuplizer::Initialize(){
   _daughters_neutral_pz.clear();
   _daughters_neutral_e.clear();
 
+  _daughters_vx.clear();
+  _daughters_vy.clear();
+  _daughters_vz.clear();
 
   _daughters_hasTES.clear();
   _daughters_px_TauUp.clear();
@@ -1734,6 +1742,10 @@ void HTauTauNtuplizer::Initialize(){
   _daughters_pcaRefitPV_x.clear();
   _daughters_pcaRefitPV_y.clear();
   _daughters_pcaRefitPV_z.clear();
+
+  _daughters_pcaRefitPVBS_x.clear();
+  _daughters_pcaRefitPVBS_y.clear();
+  _daughters_pcaRefitPVBS_z.clear();
 
   _daughters_pcaGenPV_x.clear();
   _daughters_pcaGenPV_y.clear();
@@ -2148,6 +2160,8 @@ void HTauTauNtuplizer::Initialize(){
   _RefitPVBS_y.clear();
   _RefitPVBS_z.clear();
 
+  _RefitPVBS_Cov.clear();
+
   _RefitPVNoBS_x.clear();
   _RefitPVNoBS_y.clear();
   _RefitPVNoBS_z.clear();
@@ -2216,9 +2230,6 @@ void HTauTauNtuplizer::Initialize(){
   trg_mutaucross.clear();
   trg_doubletau.clear();
 
-  vx_1.clear();
-  vy_1.clear();
-  vz_1.clear();
   pt_1.clear();
   phi_1.clear();
   eta_1.clear();
@@ -2244,9 +2255,6 @@ void HTauTauNtuplizer::Initialize(){
   antieweight_1.clear();
   antimuweight_1.clear();
 
-  vx_2.clear();
-  vy_2.clear();
-  vz_2.clear();
   pt_2.clear();
   phi_2.clear();
   eta_2.clear();
@@ -2584,6 +2592,10 @@ void HTauTauNtuplizer::beginJob(){
     myTree->Branch("daughters_neutral_py",&_daughters_neutral_py);
     myTree->Branch("daughters_neutral_pz",&_daughters_neutral_pz);
     myTree->Branch("daughters_neutral_e",&_daughters_neutral_e);
+
+    myTree->Branch("daughters_vx",&_daughters_vx);
+    myTree->Branch("daughters_vy",&_daughters_vy);
+    myTree->Branch("daughters_vz",&_daughters_vz);
   }
 
 
@@ -2969,6 +2981,9 @@ void HTauTauNtuplizer::beginJob(){
     myTree->Branch("daughters_pcaRefitPV_x",&_daughters_pcaRefitPV_x);
     myTree->Branch("daughters_pcaRefitPV_y",&_daughters_pcaRefitPV_y);
     myTree->Branch("daughters_pcaRefitPV_z",&_daughters_pcaRefitPV_z);
+    myTree->Branch("daughters_pcaRefitPVBS_x",&_daughters_pcaRefitPVBS_x);
+    myTree->Branch("daughters_pcaRefitPVBS_y",&_daughters_pcaRefitPVBS_y);
+    myTree->Branch("daughters_pcaRefitPVBS_z",&_daughters_pcaRefitPVBS_z);
     myTree->Branch("daughters_pcaGenPV_x",&_daughters_pcaGenPV_x);
     myTree->Branch("daughters_pcaGenPV_y",&_daughters_pcaGenPV_y);
     myTree->Branch("daughters_pcaGenPV_z",&_daughters_pcaGenPV_z);
@@ -3292,6 +3307,8 @@ void HTauTauNtuplizer::beginJob(){
   myTree->Branch("RefitPVBS_xError", &_RefitPVBS_xError);
   myTree->Branch("RefitPVBS_yError", &_RefitPVBS_yError);
   myTree->Branch("RefitPVBS_zError", &_RefitPVBS_zError);
+  
+  myTree->Branch("RefitPVBS_Cov", &_RefitPVBS_Cov);
 
   myTree->Branch("RefitPVNoBS_xError", &_RefitPVNoBS_xError);
   myTree->Branch("RefitPVNoBS_yError", &_RefitPVNoBS_yError);
@@ -3332,9 +3349,6 @@ void HTauTauNtuplizer::beginJob(){
   myTree->Branch("trg_mutaucross", &trg_mutaucross);
   myTree->Branch("trg_doubletau", &trg_doubletau);
 
-  myTree->Branch("vx_1", &vx_1);
-  myTree->Branch("vy_1", &vy_1);
-  myTree->Branch("vz_1", &vz_1);
   myTree->Branch("pt_1", &pt_1);
   myTree->Branch("phi_1", &phi_1);
   myTree->Branch("eta_1", &eta_1);
@@ -3359,9 +3373,6 @@ void HTauTauNtuplizer::beginJob(){
   myTree->Branch("antieweight_1", &antieweight_1);
   myTree->Branch("antimuweight_1", &antimuweight_1);
 
-  myTree->Branch("vx_2", &vx_2);
-  myTree->Branch("vy_2", &vy_2);
-  myTree->Branch("vz_2", &vz_2);
   myTree->Branch("pt_2", &pt_2);
   myTree->Branch("phi_2", &phi_2);
   myTree->Branch("eta_2", &eta_2);
@@ -4230,18 +4241,18 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
     if(candSynch.daughter(1)->isMuon() || candSynch.daughter(1)->isElectron()) continue;
     //di-lepton && third lepton
     bool DiLepton = false, ThirdLepton = false;
-    if(candSynch.numberOfDaughters()>2){
-      for(unsigned int i = 2; i<candSynch.numberOfDaughters(); i++){
-        if(deltaR(candSynch.daughter(i)->p4(),Tau1P4Corrected)>0.5 && deltaR(candSynch.daughter(i)->p4(),Tau2P4Corrected)>0.5){
-          if(EleVeto(candSynch.daughter(i),candSynch.daughter(i)->pt()) || MuVeto(candSynch.daughter(i),candSynch.daughter(i)->pt())) ThirdLepton = true;  
+    for(edm::View<reco::Candidate>::const_iterator daui = daus->begin(); daui!=daus->end();++daui){
+      const reco::Candidate* candi = &(*daui);
+      if(deltaR(candi->p4(),Tau1P4Corrected)>0.5 && deltaR(candi->p4(),Tau2P4Corrected)>0.5){
+          if(EleVeto(candi) || MuVeto(candi)) ThirdLepton = true;  
         }
-        for(unsigned int j = 2; j<candSynch.numberOfDaughters(); i++){
-          if(i == j) continue;
-          if(DiEle(candSynch.daughter(i),candSynch.daughter(j),candSynch.daughter(i)->pt(),candSynch.daughter(j)->pt()) || DiMuon(candSynch.daughter(i),candSynch.daughter(j),candSynch.daughter(i)->pt(),candSynch.daughter(j)->pt())) DiLepton = true;
+        for(edm::View<reco::Candidate>::const_iterator dauj = daus->begin(); dauj!=daus->end();++dauj){
+	  const reco::Candidate* candj = &(*dauj);
+          if(candi == candj) continue;
+          if(DiEle(candi,candj) || DiMuon(candi,candj)) DiLepton = true;
         }
-      }
     }
-    if(DiLepton == true || ThirdLepton == true) continue;
+    if(DiLepton == true || ThirdLepton == true) continue; // To check if it's continue or return
     //pT
     if(Tau1P4Corrected.Pt()<35 || Tau2P4Corrected.Pt()<35) continue;
     //eta
@@ -4259,8 +4270,6 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
     if(candSynch.daughter(1)->charge()*candSynch.daughter(0)->charge()>0) continue;
     //delta R
     if(deltaR(Tau1P4Corrected,Tau2P4Corrected)<0.5) continue;
-    //visible mass
-    if((Tau1P4Corrected + Tau2P4Corrected).M()<40) continue;
 
     int tau1Index=-99,tau2Index=-99;
     double dRmin1=0.00001;
@@ -4560,6 +4569,10 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
 	byIsolationMVA3oldDMwLTraw_2.push_back(false);
 	Tau2P4Corrected=cand0Synch.daughter(1)->p4();
       }
+
+    //visible mass
+    if((Tau1P4Corrected + Tau2P4Corrected).M()<40) return;
+
     if(cand0Synch.daughter(0)->isMuon()){dm_1.push_back(16);dmMVA_1.push_back(16);}
     else if (cand0Synch.daughter(0)->isElectron()){dm_1.push_back(15);dmMVA_1.push_back(16);}
     else{ dm_1.push_back(userdatahelpers::getUserFloat (cand0Synch.daughter(0), "decayMode"));dmMVA_1.push_back(userdatahelpers::getUserFloat(cand0Synch.daughter(0),"MVADM2017v1"));}
@@ -4578,9 +4591,6 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
     tau1IndexVect.push_back(tau1Index);
     tau2IndexVect.push_back(tau2Index);
 
-    vx_1.push_back(cand0Synch.daughter(0)->vx());
-    vy_1.push_back(cand0Synch.daughter(0)->vy());
-    vz_1.push_back(cand0Synch.daughter(0)->vz());
     pt_1.push_back(Tau1P4Corrected.pt());
     phi_1.push_back(cand0Synch.daughter(0)->phi());
     eta_1.push_back(cand0Synch.daughter(0)->eta());
@@ -4624,9 +4634,6 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
 	}
     }
 
-    vx_2.push_back(cand0Synch.daughter(1)->vx());
-    vy_2.push_back(cand0Synch.daughter(1)->vy());
-    vz_2.push_back(cand0Synch.daughter(1)->vz());
     pt_2.push_back(Tau2P4Corrected.pt());
     phi_2.push_back(cand0Synch.daughter(1)->phi());
     eta_2.push_back(cand0Synch.daughter(1)->eta());
@@ -4676,13 +4683,11 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
 
     }
 
-    if(_RefitPVBS_x.size()>0 && tau1Index!=-99  && tau2Index!=-99)
+    /*if(_RefitPVBS_x.size()>0 && tau1Index!=-99  && tau2Index!=-99)
       {
 	std::vector<size_t> hashes;
 	size_t hash = 0;
-
 	boost::hash_combine(hash, _LeptonHash.at(tau1Index));
-
 	boost::hash_combine(hash, _LeptonHash.at(tau2Index));
 
 	hashes.push_back(hash);
@@ -4702,7 +4707,7 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
 	    pvz.push_back(_RefitPVBS_z.at(ivertex));
 	  }
 	} // loop over refitted vertices collection
-      }
+      }*/
 
     if(tau1Index!=-99 && tau2Index!=-99 )
       {
@@ -6324,6 +6329,7 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
     _daughters_e_EleDown.push_back((float)pfourEleDown.E());
     _daughters_isTauMatched.push_back( (isTauMatched ? 1 : 0) );
 
+
     // gen info
 
     if (theisMC || IsEmbed)
@@ -6336,6 +6342,10 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
     //if(theisMC)_genDaughters.push_back(userdatahelpers::getUserFloat(cand,"fromH"));
 
     _softLeptons.push_back(cand);//This is needed also for FindCandIndex
+
+    _daughters_vx.push_back(cand->vx());
+    _daughters_vy.push_back(cand->vy());
+    _daughters_vz.push_back(cand->vz());
 
     _pdgdau.push_back(cand->pdgId());
     _combreliso.push_back(userdatahelpers::getUserFloat(cand,"combRelIsoPF"));
@@ -6444,6 +6454,7 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
     TVector3 pcaPV = getPCA(event, setup, cand->bestTrack(), aPVPoint);
     TVector3 pcaRefitPV = getPCA(event, setup, cand->bestTrack(), aPVRefitPoint);
     TVector3 pcaGenPV;
+    TVector3 pcaRefitPVBS;
     if(theisMC) pcaGenPV = getPCA(event, setup, cand->bestTrack(), aPVGenPoint);
     if(type==ParticleType::MUON){
       //_MVADM2016v1.push_back(-99);
@@ -6582,6 +6593,10 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
 	pcaPV = getPCA(event, setup, taon->leadChargedHadrCand()->bestTrack(), aPVPoint);
 	pcaRefitPV = getPCA(event, setup, taon->leadChargedHadrCand()->bestTrack(), aPVRefitPoint);
 	if(theisMC) pcaGenPV = getPCA(event, setup, taon->leadChargedHadrCand()->bestTrack(), aPVGenPoint);
+        for(unsigned int i=0; i<_RefitPVBS_x.size(); i++){
+	  GlobalPoint aPVBSPoint(_RefitPVBS_x.at(i), _RefitPVBS_y.at(i), _RefitPVBS_z.at(i));
+	  pcaRefitPVBS = getPCA(event, setup, taon->leadChargedHadrCand()->bestTrack(), aPVBSPoint);
+	} 
 
 	reco::CandidatePtrVector chCands = taon->signalChargedHadrCands();
 	reco::CandidatePtrVector neCands = taon->signalGammaCands();
@@ -6600,7 +6615,9 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
 	}
 	if(taon->hasUserData("TauTrackFiller_par")){
 	  for(unsigned int i =0; i < taon->userData<std::vector<double> >("TauTrackFiller_par")->size(); i++){iPFTau_Track_par.push_back(taon->userData<std::vector<double> >("TauTrackFiller_par")->at(i));  }
+   
 	}
+
 	if(taon->hasUserData("PFTauTrackLV")){
 	  for(unsigned int i =0; i < taon->userData<std::vector<double> >("PFTauTrackLV")->size(); i++){iPFTauTrackLV.push_back(taon->userData<std::vector<double> >("PFTauTrackLV")->at(i));  }
 	}
@@ -6765,6 +6782,10 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
     _daughters_pcaRefitPV_x.push_back(pcaRefitPV.X());
     _daughters_pcaRefitPV_y.push_back(pcaRefitPV.Y());
     _daughters_pcaRefitPV_z.push_back(pcaRefitPV.Z());
+
+    _daughters_pcaRefitPVBS_x.push_back(pcaRefitPVBS.X());
+    _daughters_pcaRefitPVBS_y.push_back(pcaRefitPVBS.Y());
+    _daughters_pcaRefitPVBS_z.push_back(pcaRefitPVBS.Z());
 
     _daughters_pcaGenPV_x.push_back(pcaGenPV.X());
     _daughters_pcaGenPV_y.push_back(pcaGenPV.Y());
@@ -7246,13 +7267,13 @@ void HTauTauNtuplizer::fillMCTruth(const edm::Event& iEvent, const edm::EventSet
   }
 }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-bool HTauTauNtuplizer::EleVeto(const reco::Candidate* cand,double TauPt)
+bool HTauTauNtuplizer::EleVeto(const reco::Candidate* cand)
 {
   //cout<<endl<<cand->isElectron()<<" ";
   if(cand->isElectron()){
     //cout<<endl<<"Electron:";
     //cout<<" "<<TauPt<<" "<<std::abs(cand->eta())<<" ";
-    if(TauPt>10 && std::abs(cand->eta())<2.5){
+    if(cand->pt()>10 && std::abs(cand->eta())<2.5){
       //  cout<<" "<<std::abs(userdatahelpers::getUserFloat(cand,"dxy"))<<" "<<std::abs(userdatahelpers::getUserFloat(cand,"dz"))<<" ";
       if(std::abs(userdatahelpers::getUserFloat(cand,"dxy")) < 0.045 && std::abs(userdatahelpers::getUserFloat(cand,"dz")) < 0.2){
 	//	cout<<" "<<userdatahelpers::getUserFloat(cand,"isEleID90")<<" ";
@@ -7262,7 +7283,7 @@ bool HTauTauNtuplizer::EleVeto(const reco::Candidate* cand,double TauPt)
 	    //	    cout<<" "<<userdatahelpers::getUserInt(cand,"missingHit")<<" ";
 	    if(userdatahelpers::getUserInt(cand,"missingHit")<=1){
 	      //	      cout<<" "<<userdatahelpers::getUserFloat(cand,"combRelIsoPF")<<" ";
-	      if(userdatahelpers::getUserFloat(cand,"combRelIsoPF")<(0.3*TauPt)){
+	      if(userdatahelpers::getUserFloat(cand,"combRelIsoPF")<(0.3*cand->pt())){
 		return true;
 	      }
 	    }
@@ -7273,19 +7294,19 @@ bool HTauTauNtuplizer::EleVeto(const reco::Candidate* cand,double TauPt)
   }
   return false;
 }
-bool HTauTauNtuplizer::MuVeto(const reco::Candidate* cand,double TauPt)
+bool HTauTauNtuplizer::MuVeto(const reco::Candidate* cand)
 {
   //  cout<<endl<<cand->isMuon()<<" ";
   if(cand->isMuon()){
     //cout<<endl<<"Muon:";
     //  cout<<" "<<TauPt<<" "<<std::abs(cand->eta())<<" ";
-    if(TauPt>10 && std::abs(cand->eta())<2.4){
+    if(cand->pt()>10 && std::abs(cand->eta())<2.4){
       //      cout<<" "<<std::abs(userdatahelpers::getUserFloat(cand,"dxy"))<<" "<<std::abs(userdatahelpers::getUserFloat(cand,"dz"))<<" ";
       if(std::abs(userdatahelpers::getUserFloat(cand,"dxy")) < 0.045 && std::abs(userdatahelpers::getUserFloat(cand,"dz")) < 0.2){
 	//	cout<<" "<<CHECK_BIT(userdatahelpers::getUserInt(cand,"muonID"),2)<<" ";
 	if(CHECK_BIT(userdatahelpers::getUserInt(cand,"muonID"),2)){
 	  //	  cout<<" "<<userdatahelpers::getUserFloat(cand,"combRelIsoPF")<<" ";
-	  if(userdatahelpers::getUserFloat(cand,"combRelIsoPF")<(0.3*TauPt)){
+	  if(userdatahelpers::getUserFloat(cand,"combRelIsoPF")<(0.3*cand->pt())){
 	    return true;
 	  }
 	}
@@ -7295,7 +7316,7 @@ bool HTauTauNtuplizer::MuVeto(const reco::Candidate* cand,double TauPt)
   return false;
 }
 
-bool HTauTauNtuplizer::DiEle(const reco::Candidate* cand1,const reco::Candidate* cand2,double TauPt1, double TauPt2)
+bool HTauTauNtuplizer::DiEle(const reco::Candidate* cand1,const reco::Candidate* cand2)
 {
   bool kin=false, vertex=false, isele=false, iso=false;
 
@@ -7303,10 +7324,10 @@ bool HTauTauNtuplizer::DiEle(const reco::Candidate* cand1,const reco::Candidate*
     {
       if(deltaR(cand1->p4(),cand2->p4())>0.15)
 	{
-	  kin = (TauPt1>15 && TauPt2>15 && fabs(cand1->eta())<2.5 && fabs(cand2->eta())<2.5);
+	  kin = (cand1->pt()>15 && cand2->pt()>15 && fabs(cand1->eta())<2.5 && fabs(cand2->eta())<2.5);
 	  vertex = (fabs(userdatahelpers::getUserFloat(cand1,"dxy"))<0.045 && fabs(userdatahelpers::getUserFloat(cand2,"dxy"))< 0.045 && fabs(userdatahelpers::getUserFloat(cand1,"dz")) < 0.2 && fabs(userdatahelpers::getUserFloat(cand2,"dz")) < 0.2);
 	  isele=(userdatahelpers::getUserFloat(cand1,"isEleNoIsoID90") && userdatahelpers::getUserFloat(cand2,"isEleNoIsoID90"));
-	  iso= (userdatahelpers::getUserFloat(cand1,"combRelIsoPF") < (0.3*TauPt1) && userdatahelpers::getUserFloat(cand2,"combRelIsoPF")<(0.3*TauPt2));
+	  iso= (userdatahelpers::getUserFloat(cand1,"combRelIsoPF") < (0.3*cand1->pt()) && userdatahelpers::getUserFloat(cand2,"combRelIsoPF")<(0.3*cand2->pt()));
 	  if((kin && vertex && isele && iso)==1)return true;
 	}
     }
@@ -7314,7 +7335,7 @@ bool HTauTauNtuplizer::DiEle(const reco::Candidate* cand1,const reco::Candidate*
   return false;
 }
 
-bool HTauTauNtuplizer::DiMuon(const reco::Candidate* cand1,const reco::Candidate* cand2,double TauPt1, double TauPt2)
+bool HTauTauNtuplizer::DiMuon(const reco::Candidate* cand1,const reco::Candidate* cand2)
 {
   bool kin=false, vertex=false, isele=false, iso=false;
 
@@ -7322,10 +7343,10 @@ bool HTauTauNtuplizer::DiMuon(const reco::Candidate* cand1,const reco::Candidate
     {
       if(deltaR(cand1->p4(),cand2->p4())>0.15)
 	{
-	  kin = (TauPt1>15 && TauPt2>15 && fabs(cand1->eta())<2.4 && fabs(cand2->eta())<2.4);
+	  kin = (cand1->pt()>15 && cand2->pt()>15 && fabs(cand1->eta())<2.4 && fabs(cand2->eta())<2.4);
 	  vertex = (fabs(userdatahelpers::getUserFloat(cand1,"dxy"))<0.045 && fabs(userdatahelpers::getUserFloat(cand2,"dxy"))< 0.045 && fabs(userdatahelpers::getUserFloat(cand1,"dz")) < 0.2 && fabs(userdatahelpers::getUserFloat(cand2,"dz")) < 0.2);
 	  isele=((userdatahelpers::getUserFloat(cand1,"isPFMuon") && userdatahelpers::getUserFloat(cand2,"isPFMuon")) && (userdatahelpers::getUserFloat(cand1,"isGlobalMuon") && userdatahelpers::getUserFloat(cand2,"isGlobalMuon")) && (userdatahelpers::getUserFloat(cand1,"isTrackerMuon") && userdatahelpers::getUserFloat(cand2,"isTrackerMuon")));
-	  iso= (userdatahelpers::getUserFloat(cand1,"combRelIsoPF") < (0.3*TauPt1) && userdatahelpers::getUserFloat(cand2,"combRelIsoPF")<(0.3*TauPt2));
+	  iso= (userdatahelpers::getUserFloat(cand1,"combRelIsoPF") < (0.3*cand1->pt()) && userdatahelpers::getUserFloat(cand2,"combRelIsoPF")<(0.3*cand2->pt()));
 	  if((kin && vertex && isele && iso)==1)return true;
 	}
     }
@@ -7824,6 +7845,19 @@ bool HTauTauNtuplizer::refitPV(const edm::Event & iEvent, const edm::EventSetup 
 	  _RefitPVBS_x.push_back(RefitPVBS->at(irefit).x());
 	  _RefitPVBS_y.push_back(RefitPVBS->at(irefit).y());
 	  _RefitPVBS_z.push_back(RefitPVBS->at(irefit).z());
+
+          vector<vector<double>> pvbs_cov(3,vector<double>(3));
+	  math::Error<3>::type pvbsCov;
+	  RefitPVBS->at(irefit).fill(pvbsCov);
+	  for(int i=0; i<3; i++){
+	    for(int j=i; j<3; j++){
+	      pvbs_cov[i][j]=pvbsCov(i,j);
+	      if(i!=j){
+	        pvbs_cov[j][i]=pvbsCov(i,j);
+	      }
+	    }
+          }
+	  _RefitPVBS_Cov.push_back(pvbs_cov);
 
 	  std::vector<size_t> hashesBS;
 	  for(auto name: RefitPVBS->at(irefit).userCandNames())
