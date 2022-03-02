@@ -731,9 +731,9 @@ private:
   std::vector<Float_t> _daughters_pcaRefitPV_y;
   std::vector<Float_t> _daughters_pcaRefitPV_z;
 
-  std::vector<Float_t> _daughters_pcaRefitPVBS_x;
-  std::vector<Float_t> _daughters_pcaRefitPVBS_y;
-  std::vector<Float_t> _daughters_pcaRefitPVBS_z;
+  std::vector<std::vector<Float_t>> _daughters_pcaRefitPVBS_x;
+  std::vector<std::vector<Float_t>> _daughters_pcaRefitPVBS_y;
+  std::vector<std::vector<Float_t>> _daughters_pcaRefitPVBS_z;
 
   std::vector<Float_t> _daughters_pcaGenPV_x;
   std::vector<Float_t> _daughters_pcaGenPV_y;
@@ -1461,7 +1461,8 @@ private:
 
   PileUp * PUofficial = new PileUp();
 
-  TFile *TES2016= new TFile(/*"/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer*/"data/TauES_dm_DeepTau2017v2p1VSjet_2016Legacy.root","read");
+  //REMOTE RUN
+  TFile *TES2016= new TFile("data/TauES_dm_DeepTau2017v2p1VSjet_2016Legacy.root","read");
   TFile *FES2016= new TFile("data/TauFES_eta-dm_DeepTau2017v2p1VSe_2016Legacy.root");
   TH1* histTES2016 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2016))->Get("tes"));
   TGraph* histFES2016 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2016))->Get("fes"));
@@ -1475,6 +1476,22 @@ private:
   TFile *FES2018=new TFile("data/TauFES_eta-dm_DeepTau2017v2p1VSe_2018ReReco.root");
   TH1* histTES2018 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2018))->Get("tes"));
   TGraph* histFES2018 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2018))->Get("fes"));
+
+  //LOCAL RUN
+  /*TFile *TES2016= new TFile("/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauES_dm_DeepTau2017v2p1VSjet_2016Legacy.root","read");
+  TFile *FES2016= new TFile("/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2016Legacy.root");
+  TH1* histTES2016 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2016))->Get("tes"));
+  TGraph* histFES2016 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2016))->Get("fes"));
+
+  TFile *TES2017=new TFile("/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauES_dm_DeepTau2017v2p1VSjet_2017ReReco.root","read");
+  TFile *FES2017=new TFile("/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2017ReReco.root");
+  TH1* histTES2017 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2017))->Get("tes"));
+  TGraph* histFES2017 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2017))->Get("fes"));
+
+  TFile *TES2018=new TFile("/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauES_dm_DeepTau2017v2p1VSjet_2018ReReco.root","read");
+  TFile *FES2018=new TFile("/opt/sbg/cms/safe1/cms/msessini/IPHCProductionTools/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/data/TauFES_eta-dm_DeepTau2017v2p1VSe_2018ReReco.root");
+  TH1* histTES2018 = dynamic_cast<TH1*>((const_cast<TFile*>(TES2018))->Get("tes"));
+  TGraph* histFES2018 = dynamic_cast<TGraph*>((const_cast<TFile*>(FES2018))->Get("fes"));*/
 
   std::vector<math::XYZTLorentzVector> LeptonP4;
   std::vector<Int_t> tau1IndexVect;
@@ -4529,7 +4546,6 @@ void HTauTauNtuplizer::analyze(const edm::Event& event, const edm::EventSetup& e
       againstMuonLoose3_2.push_back(userdatahelpers::getUserInt(cand0Synch.daughter(1),"againstMuonLoose3"));
       againstMuonTight3_2.push_back(userdatahelpers::getUserInt(cand0Synch.daughter(1),"againstMuonTight3"));
       byIsolationMVA3oldDMwLTraw_2.push_back(userdatahelpers::getUserFloat(cand0Synch.daughter(1),"byIsolationMVArun2017v2DBoldDMdR0p3wLTraw2017"));
-      Tau2P4Corrected=cand0Synch.daughter(1)->p4();//*tes2;
     }
     else
       {
@@ -6454,7 +6470,9 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
     TVector3 pcaPV = getPCA(event, setup, cand->bestTrack(), aPVPoint);
     TVector3 pcaRefitPV = getPCA(event, setup, cand->bestTrack(), aPVRefitPoint);
     TVector3 pcaGenPV;
-    TVector3 pcaRefitPVBS;
+    std::vector<Float_t> pcaRefitPVBS_vecx;
+    std::vector<Float_t> pcaRefitPVBS_vecy;
+    std::vector<Float_t> pcaRefitPVBS_vecz;
     if(theisMC) pcaGenPV = getPCA(event, setup, cand->bestTrack(), aPVGenPoint);
     if(type==ParticleType::MUON){
       //_MVADM2016v1.push_back(-99);
@@ -6595,7 +6613,10 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
 	if(theisMC) pcaGenPV = getPCA(event, setup, taon->leadChargedHadrCand()->bestTrack(), aPVGenPoint);
         for(unsigned int i=0; i<_RefitPVBS_x.size(); i++){
 	  GlobalPoint aPVBSPoint(_RefitPVBS_x.at(i), _RefitPVBS_y.at(i), _RefitPVBS_z.at(i));
-	  pcaRefitPVBS = getPCA(event, setup, taon->leadChargedHadrCand()->bestTrack(), aPVBSPoint);
+	  TVector3 pcaRefitPVBS = getPCA(event, setup, taon->leadChargedHadrCand()->bestTrack(), aPVBSPoint);
+          pcaRefitPVBS_vecx.push_back(pcaRefitPVBS.X());
+          pcaRefitPVBS_vecy.push_back(pcaRefitPVBS.Y());
+          pcaRefitPVBS_vecz.push_back(pcaRefitPVBS.Z());
 	} 
 
 	reco::CandidatePtrVector chCands = taon->signalChargedHadrCands();
@@ -6783,9 +6804,9 @@ void HTauTauNtuplizer::FillSoftLeptons(const edm::View<reco::Candidate> *daus,
     _daughters_pcaRefitPV_y.push_back(pcaRefitPV.Y());
     _daughters_pcaRefitPV_z.push_back(pcaRefitPV.Z());
 
-    _daughters_pcaRefitPVBS_x.push_back(pcaRefitPVBS.X());
-    _daughters_pcaRefitPVBS_y.push_back(pcaRefitPVBS.Y());
-    _daughters_pcaRefitPVBS_z.push_back(pcaRefitPVBS.Z());
+    _daughters_pcaRefitPVBS_x.push_back(pcaRefitPVBS_vecx);
+    _daughters_pcaRefitPVBS_y.push_back(pcaRefitPVBS_vecy);
+    _daughters_pcaRefitPVBS_z.push_back(pcaRefitPVBS_vecz);
 
     _daughters_pcaGenPV_x.push_back(pcaGenPV.X());
     _daughters_pcaGenPV_y.push_back(pcaGenPV.Y());
