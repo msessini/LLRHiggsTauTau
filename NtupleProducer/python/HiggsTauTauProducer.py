@@ -95,7 +95,7 @@ else :
   if YEAR == 2016:
     process.GlobalTag.globaltag = '102X_dataRun2_v12'                # 2016 Data
   if YEAR == 2017:
-    process.GlobalTag.globaltag = '102X_dataRun2_v12'                # 2017 Data
+    process.GlobalTag.globaltag = '102X_dataRun2_v8'                # 2017 Data
   if YEAR == 2018:
     if PERIOD=="D":
         process.GlobalTag.globaltag = '102X_dataRun2_Prompt_v15'    # 2018D Data
@@ -587,14 +587,14 @@ process.taus=cms.Sequence(process.rerunMvaIsolationSequence + process.slimmedTau
 ### gen info, only from MC
 ### ----------------------------------------------------------------------
 process.genInfo = cms.EDProducer("GenFiller",
-         src = cms.InputTag("prunedGenParticles"),
+         src = cms.InputTag("prunedGenParticles","","MERGE"),
          storeLightFlavAndGlu = cms.bool(True) # if True, store also udcs and gluons (first copy)
  )
 
 if IsEmbed:process.genInfo.src = cms.InputTag("prunedGenParticles","","MERGE")
 else:process.genInfo.src = cms.InputTag("prunedGenParticles")
                   
-if IsMC : process.geninfo = cms.Sequence(process.genInfo)
+if(IsMC or IsEmbed) : process.geninfo = cms.Sequence(process.genInfo)
 else : process.geninfo = cms.Sequence()
 
 
@@ -1087,7 +1087,7 @@ process.EvntCounterA = cms.EDAnalyzer('EventCounter',
                                       gensrccounter = cms.InputTag('prunedGenParticles'),
                                       GenEventInfo   = cms.InputTag('generator'),
                                       IsEmbed= cms.bool(IsEmbed),
-				      DataMCType    = cms.untracked.string("H_tautau_ggF")
+				      DataMCType    = cms.untracked.string("DY_tautau_embedded")
 )
 
 
