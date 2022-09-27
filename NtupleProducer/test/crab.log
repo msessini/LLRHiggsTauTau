@@ -1,0 +1,533 @@
+DEBUG 2021-12-14 20:39:00.625 UTC: 	 CRAB Client version: v3.211130
+DEBUG 2021-12-14 20:39:00.625 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2021-12-14 20:39:00.625 UTC: 	 Executing command: 'status'
+DEBUG 2021-12-14 20:39:00.626 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2021-12-14 20:39:00.630 UTC: 	 Error: --verboseErrors is not a valid CRAB project directory.
+ERROR 2021-12-14 20:39:00.630 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.211130.01/bin/crab.py", line 149, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.211130.01/bin/crab.py", line 134, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.211130.01/lib/CRABClient/Commands/status.py", line 47, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.211130.01/lib/CRABClient/Commands/SubCommand.py", line 269, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.211130.01/lib/CRABClient/Commands/SubCommand.py", line 636, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: --verboseErrors is not a valid CRAB project directory.
+INFO 2021-12-14 20:39:00.635 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-02-16 22:58:03.373 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-16 22:58:03.373 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-16 22:58:03.374 UTC: 	 Executing command: 'checkwrite'
+DEBUG 2022-02-16 22:58:03.374 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+DEBUG 2022-02-16 22:58:03.377 UTC: 	 Checking credentials
+DEBUG 2022-02-16 22:58:03.378 UTC: 	 Found proxy file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-02-16 22:58:03.378 UTC: 	 Making sure it has proper VOMS extension
+DEBUG 2022-02-16 22:58:03.378 UTC: 	 Executing command :
+ voms-proxy-info --vo --file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-02-16 22:58:04.182 UTC: 	 output : cms
+
+ error: 
+ retcode : 0
+DEBUG 2022-02-16 22:58:04.182 UTC: 	 Getting proxy life time left
+DEBUG 2022-02-16 22:58:04.182 UTC: 	 Executing command :
+ voms-proxy-info --actimeleft --timeleft --file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-02-16 22:58:04.944 UTC: 	 output : 207370
+207370
+
+ error: 
+ retcode : 0
+DEBUG 2022-02-16 22:58:04.945 UTC: 	 Proxy valid for 57:36:10 hours
+ERROR 2022-02-16 22:58:04.945 UTC: 	 Error: Please specify the site where to check the write permissions. Use the --site option.
+ERROR 2022-02-16 22:58:04.945 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 162, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 147, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/checkwrite.py", line 20, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 378, in __init__
+    self.validateOptions()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/checkwrite.py", line 291, in validateOptions
+    raise ex
+MissingOptionException: [91mError[0m: Please specify the site where to check the write permissions. Use the --site option.
+INFO 2022-02-16 22:58:04.950 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-02-22 19:04:13.209 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-22 19:04:13.209 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-22 19:04:13.209 UTC: 	 Executing command: 'submit'
+DEBUG 2022-02-22 19:04:13.210 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-02-22 19:04:13.213 UTC: 	 Will use CRAB configuration file crab3_H_tautau_ggF_UncorrelatedDecay_Filtered_2018.py
+DEBUG 2022-02-22 19:04:13.213 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-02-22 19:04:13.240 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-02-22 19:04:13.241 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_H_tautau_ggF_2018_V3/crab_H_tautau_ggF_2018_V3' already exists 
+Please change the requestName in the config file
+ERROR 2022-02-22 19:04:13.241 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 162, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 147, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_H_tautau_ggF_2018_V3/crab_H_tautau_ggF_2018_V3' already exists 
+Please change the requestName in the config file
+INFO 2022-02-22 19:04:13.246 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-05-18 11:54:06.651 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-05-18 11:54:06.652 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-05-18 11:54:06.652 UTC: 	 Executing command: 'checkwrite'
+DEBUG 2022-05-18 11:54:06.653 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+DEBUG 2022-05-18 11:54:06.656 UTC: 	 Checking credentials
+DEBUG 2022-05-18 11:54:06.657 UTC: 	 Found proxy file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-05-18 11:54:06.658 UTC: 	 Making sure it has proper VOMS extension
+DEBUG 2022-05-18 11:54:06.658 UTC: 	 Executing command :
+ voms-proxy-info --vo --file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-05-18 11:54:07.460 UTC: 	 output : cms
+
+ error: 
+ retcode : 0
+DEBUG 2022-05-18 11:54:07.460 UTC: 	 Getting proxy life time left
+DEBUG 2022-05-18 11:54:07.460 UTC: 	 Executing command :
+ voms-proxy-info --actimeleft --timeleft --file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-05-18 11:54:08.247 UTC: 	 output : 675048
+675047
+
+ error: 
+ retcode : 0
+DEBUG 2022-05-18 11:54:08.248 UTC: 	 Proxy valid for 187:30:47 hours
+ERROR 2022-05-18 11:54:08.248 UTC: 	 Error: Please specify the site where to check the write permissions. Use the --site option.
+ERROR 2022-05-18 11:54:08.248 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/checkwrite.py", line 20, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 378, in __init__
+    self.validateOptions()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/checkwrite.py", line 291, in validateOptions
+    raise ex
+MissingOptionException: [91mError[0m: Please specify the site where to check the write permissions. Use the --site option.
+INFO 2022-05-18 11:54:08.254 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-05-18 11:54:22.120 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-05-18 11:54:22.121 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-05-18 11:54:22.121 UTC: 	 Executing command: 'checkwrite'
+DEBUG 2022-05-18 11:54:22.121 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+WARNING 2022-05-18 11:54:22.123 UTC: 	 Warning: 'crab checkwrite' command takes no arguments, 1 given. Ignoring arguments ['crab3_WW_1l1nu2q_2018/crab_crab3_WW_1l1nu2q_2018/'].
+DEBUG 2022-05-18 11:54:22.123 UTC: 	 Checking credentials
+DEBUG 2022-05-18 11:54:22.123 UTC: 	 Found proxy file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-05-18 11:54:22.123 UTC: 	 Making sure it has proper VOMS extension
+DEBUG 2022-05-18 11:54:22.123 UTC: 	 Executing command :
+ voms-proxy-info --vo --file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-05-18 11:54:22.984 UTC: 	 output : cms
+
+ error: 
+ retcode : 0
+DEBUG 2022-05-18 11:54:22.985 UTC: 	 Getting proxy life time left
+DEBUG 2022-05-18 11:54:22.985 UTC: 	 Executing command :
+ voms-proxy-info --actimeleft --timeleft --file /home-pbs/msessini/Proxy/x509up_u9498
+DEBUG 2022-05-18 11:54:23.828 UTC: 	 output : 675033
+675032
+
+ error: 
+ retcode : 0
+DEBUG 2022-05-18 11:54:23.829 UTC: 	 Proxy valid for 187:30:32 hours
+ERROR 2022-05-18 11:54:23.829 UTC: 	 Error: Please specify the site where to check the write permissions. Use the --site option.
+ERROR 2022-05-18 11:54:23.829 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/checkwrite.py", line 20, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 378, in __init__
+    self.validateOptions()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/checkwrite.py", line 291, in validateOptions
+    raise ex
+MissingOptionException: [91mError[0m: Please specify the site where to check the write permissions. Use the --site option.
+INFO 2022-05-18 11:54:23.834 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-06-23 08:17:32.509 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-06-23 08:17:32.509 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-06-23 08:17:32.510 UTC: 	 Executing command: 'submit'
+DEBUG 2022-06-23 08:17:32.510 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-06-23 08:17:32.519 UTC: 	 Will use CRAB configuration file crab3_H_tautau_ggF_UncorrelatedDecay_Filtered_2018.py
+DEBUG 2022-06-23 08:17:32.519 UTC: 	 Loading CRAB configuration file.
+INFO 2022-06-23 08:17:32.556 UTC: 	 Wrong format in command-line argument '--dryrun'. Expected format is <section-name>.<parameter-name>=<parameter-value>.
+INFO 2022-06-23 08:17:32.556 UTC: 	 If the argument '--dryrun' is an option to the submit command, try 'crab submit --dryrun [value for --dryrun option (if required)] [arguments]'.
+ERROR 2022-06-23 08:17:32.556 UTC: 	 ERROR: Wrong command-line format.
+ERROR 2022-06-23 08:17:32.556 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 316, in __init__
+    self.loadConfig(self.options.config, self.args)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 67, in loadConfig
+    raise ConfigurationException("ERROR: Wrong command-line format.")
+ConfigurationException: ERROR: Wrong command-line format.
+INFO 2022-06-23 08:17:32.561 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-06-27 14:39:47.109 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-06-27 14:39:47.109 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-06-27 14:39:47.109 UTC: 	 Executing command: 'submit'
+DEBUG 2022-06-27 14:39:47.110 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-06-27 14:39:47.113 UTC: 	 Will use CRAB configuration file crab3_H_tautau_ggF_UncorrelatedDecay_Filtered_2018.py
+DEBUG 2022-06-27 14:39:47.113 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-06-27 14:39:47.123 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-06-27 14:39:47.124 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_H_tautau_ggF_2018_V3/crab_H_tautau_ggF_2018_V3' already exists 
+Please change the requestName in the config file
+ERROR 2022-06-27 14:39:47.124 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_H_tautau_ggF_2018_V3/crab_H_tautau_ggF_2018_V3' already exists 
+Please change the requestName in the config file
+INFO 2022-06-27 14:39:47.129 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-06-27 16:36:56.990 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-06-27 16:36:56.991 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-06-27 16:36:56.991 UTC: 	 Executing command: 'submit'
+DEBUG 2022-06-27 16:36:56.992 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-06-27 16:36:56.995 UTC: 	 Will use CRAB configuration file crab3_DYJets_ll_2018.py
+DEBUG 2022-06-27 16:36:56.995 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-06-27 16:36:57.003 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-06-27 16:36:57.004 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_DYJets_ll_all_2018_V3/crab_DYJets_ll_all_2018_V3' already exists 
+Please change the requestName in the config file
+ERROR 2022-06-27 16:36:57.004 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_DYJets_ll_all_2018_V3/crab_DYJets_ll_all_2018_V3' already exists 
+Please change the requestName in the config file
+INFO 2022-06-27 16:36:57.009 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-06-28 08:18:47.218 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-06-28 08:18:47.218 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-06-28 08:18:47.218 UTC: 	 Executing command: 'submit'
+DEBUG 2022-06-28 08:18:47.219 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-06-28 08:18:47.222 UTC: 	 Will use CRAB configuration file crab3_H_tautau_ggF_UncorrelatedDecay_Filtered_2018.py
+DEBUG 2022-06-28 08:18:47.222 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-06-28 08:18:47.229 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-06-28 08:18:47.230 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_H_tautau_ggF_2018_V3/crab_H_tautau_ggF_2018_V3' already exists 
+Please change the requestName in the config file
+ERROR 2022-06-28 08:18:47.230 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_H_tautau_ggF_2018_V3/crab_H_tautau_ggF_2018_V3' already exists 
+Please change the requestName in the config file
+INFO 2022-06-28 08:18:47.236 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-06-28 09:29:01.621 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-06-28 09:29:01.621 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-06-28 09:29:01.621 UTC: 	 Executing command: 'status'
+DEBUG 2022-06-28 09:29:01.622 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-06-28 09:29:01.626 UTC: 	 Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_TT_semilep_2018/crab_TT_semilep_2018
+ERROR 2022-06-28 09:29:01.626 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 646, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 508, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_TT_semilep_2018/crab_TT_semilep_2018
+INFO 2022-06-28 09:29:01.630 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-06-28 11:00:02.139 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-06-28 11:00:02.139 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-06-28 11:00:02.139 UTC: 	 Executing command: 'status'
+DEBUG 2022-06-28 11:00:02.140 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-06-28 11:00:02.144 UTC: 	 Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_TT_semilep_2018/crab_TT_semilep_2018
+ERROR 2022-06-28 11:00:02.144 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 646, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 508, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_TT_semilep_2018/crab_TT_semilep_2018
+INFO 2022-06-28 11:00:02.148 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-06-28 11:00:11.697 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-06-28 11:00:11.697 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-06-28 11:00:11.698 UTC: 	 Executing command: 'status'
+DEBUG 2022-06-28 11:00:11.698 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-06-28 11:00:11.701 UTC: 	 Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_WJets_lnu_2018/crab_WJets_lnu_2018
+ERROR 2022-06-28 11:00:11.701 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 646, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 508, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_WJets_lnu_2018/crab_WJets_lnu_2018
+INFO 2022-06-28 11:00:11.706 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-03 19:16:19.575 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-03 19:16:19.575 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-03 19:16:19.576 UTC: 	 Executing command: 'submit'
+DEBUG 2022-07-03 19:16:19.576 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-07-03 19:16:19.580 UTC: 	 Will use CRAB configuration file config2018/singleTop/crab3_ST_tW_antitop_2018.py
+DEBUG 2022-07-03 19:16:19.581 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-07-03 19:16:19.593 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-07-03 19:16:19.594 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_ST_tW_antitop_2018' already exists 
+Please change the requestName in the config file
+ERROR 2022-07-03 19:16:19.594 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_ST_tW_antitop_2018' already exists 
+Please change the requestName in the config file
+INFO 2022-07-03 19:16:19.599 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-05 20:35:17.841 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-05 20:35:17.841 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-05 20:35:17.842 UTC: 	 Executing command: 'status'
+DEBUG 2022-07-05 20:35:17.842 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-07-05 20:35:17.846 UTC: 	 Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_ST_tW_antitop_2018
+ERROR 2022-07-05 20:35:17.846 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 646, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 508, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_ST_tW_antitop_2018
+INFO 2022-07-05 20:35:17.850 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-07 14:01:25.275 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-07 14:01:25.275 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-07 14:01:25.276 UTC: 	 Executing command: 'submit'
+DEBUG 2022-07-07 14:01:25.276 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-07-07 14:01:25.290 UTC: 	 Will use CRAB configuration file config2018/signal/crab3_H_tautau_ggF_2018.py
+DEBUG 2022-07-07 14:01:25.290 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-07-07 14:01:25.303 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-07-07 14:01:25.304 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_H_tautau_ggF_2018' already exists 
+Please change the requestName in the config file
+ERROR 2022-07-07 14:01:25.304 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_H_tautau_ggF_2018' already exists 
+Please change the requestName in the config file
+INFO 2022-07-07 14:01:25.309 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-18 13:51:44.627 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-18 13:51:44.628 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-18 13:51:44.628 UTC: 	 Executing command: 'submit'
+DEBUG 2022-07-18 13:51:44.629 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-07-18 13:51:44.640 UTC: 	 Will use CRAB configuration file config2018/signal/crab3_H_tautau_ggF_2018.py
+DEBUG 2022-07-18 13:51:44.640 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-07-18 13:51:44.669 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-07-18 13:51:44.670 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_H_tautau_ggF_2018' already exists 
+Please change the requestName in the config file
+ERROR 2022-07-18 13:51:44.671 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_H_tautau_ggF_2018' already exists 
+Please change the requestName in the config file
+INFO 2022-07-18 13:51:44.676 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-19 07:10:23.357 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-19 07:10:23.358 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-19 07:10:23.358 UTC: 	 Executing command: 'status'
+DEBUG 2022-07-19 07:10:23.359 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-07-19 07:10:23.371 UTC: 	 Error: crab3_production2018/crab_H_tautau_ggF_2018/ is not a valid CRAB project directory.
+ERROR 2022-07-19 07:10:23.371 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 642, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: crab3_production2018/crab_H_tautau_ggF_2018/ is not a valid CRAB project directory.
+INFO 2022-07-19 07:10:23.376 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-19 07:12:09.326 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-19 07:12:09.327 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-19 07:12:09.327 UTC: 	 Executing command: 'submit'
+DEBUG 2022-07-19 07:12:09.328 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+INFO 2022-07-19 07:12:09.331 UTC: 	 Will use CRAB configuration file config2018/signal/crab3_H_tautau_ggF_2018.py
+DEBUG 2022-07-19 07:12:09.332 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-07-19 07:12:09.345 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-07-19 07:12:09.346 UTC: 	 Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_H_tautau_ggF_2018' already exists 
+Please change the requestName in the config file
+ERROR 2022-07-19 07:12:09.346 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_H_tautau_ggF_2018' already exists 
+Please change the requestName in the config file
+INFO 2022-07-19 07:12:09.350 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-20 12:09:34.926 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-20 12:09:34.926 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-20 12:09:34.927 UTC: 	 Executing command: 'status'
+DEBUG 2022-07-20 12:09:34.927 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-07-20 12:09:34.931 UTC: 	 Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_DY1Jets_ll_2018
+ERROR 2022-07-20 12:09:34.931 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 646, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 508, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_DY1Jets_ll_2018
+INFO 2022-07-20 12:09:34.935 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-20 12:09:45.549 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-20 12:09:45.549 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-20 12:09:45.549 UTC: 	 Executing command: 'status'
+DEBUG 2022-07-20 12:09:45.550 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-07-20 12:09:45.552 UTC: 	 Error: crab3_production2018/crab_DYJets_ll_ is not a valid CRAB project directory.
+ERROR 2022-07-20 12:09:45.552 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 642, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: crab3_production2018/crab_DYJets_ll_ is not a valid CRAB project directory.
+INFO 2022-07-20 12:09:45.557 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-20 12:10:00.842 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-20 12:10:00.843 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-20 12:10:00.843 UTC: 	 Executing command: 'status'
+DEBUG 2022-07-20 12:10:00.844 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-07-20 12:10:00.847 UTC: 	 Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_DY1Jets_ll_2018
+ERROR 2022-07-20 12:10:00.847 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 646, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 508, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab3_production2018/crab_DY1Jets_ll_2018
+INFO 2022-07-20 12:10:00.851 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-07-20 13:07:49.453 UTC: 	 CRAB Client version: v3.220323
+DEBUG 2022-07-20 13:07:49.453 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-07-20 13:07:49.454 UTC: 	 Executing command: 'status'
+DEBUG 2022-07-20 13:07:49.454 UTC: 	 Found CRAB cache file /home/msessini/.crab3
+ERROR 2022-07-20 13:07:49.457 UTC: 	 Error: 'crab status' command accepts at most 1 argument (a path to a CRAB project directory), 2 given.
+ERROR 2022-07-20 13:07:49.457 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 159, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/bin/crab.py", line 144, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220323.01/lib/CRABClient/Commands/SubCommand.py", line 628, in validateOptions
+    raise ConfigurationException(msg)
+ConfigurationException: [91mError[0m: 'crab status' command accepts at most 1 argument (a path to a CRAB project directory), 2 given.
+INFO 2022-07-20 13:07:49.461 UTC: 	 Log file is /grid_mnt/opt__sbg__cms__safe1/cms/msessini/MuTauProducer/CMSSW_10_2_23/src/LLRHiggsTauTau/NtupleProducer/test/crab.log
+DEBUG 2022-09-19 15:00:13.346 UTC: 	 CRAB Client version: v3.220823
+DEBUG 2022-09-19 15:00:13.347 UTC: 	 Running on: Linux sbgui5.in2p3.fr 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-09-19 15:00:13.347 UTC: 	 Executing command: 'status'
+DEBUG 2022-09-19 15:00:13.347 UTC: 	 Found CRAB cache file /home/msessini/.crab3
